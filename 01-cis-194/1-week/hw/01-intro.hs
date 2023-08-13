@@ -37,6 +37,13 @@ sumDigits x = sum [sum (toDigits a) | a <- x]
 validate :: Integer -> Bool
 validate n = sumDigits (doubleEveryOther (toDigitsRev n)) `mod` 10 == 0
 
+-- Nate's Bonus Round
+-- From reading Real World Haskell, let's make this a runnable binary
+-- Run from CLI with `echo "4012888888881881" | runghc 01-intro`
+main :: IO ()
+main = interact cardNumber
+    where cardNumber input = show (validate (read input :: Integer)) ++ "\n"
+
 -- Note to future self:
 -- This took a long time to complete ~90 minutes. I felt that I didn't have sufficient information
 -- to come up with the ideal solutions like using map for exercise 1 and zipWith for exercise 2.
